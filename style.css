@@ -20,34 +20,71 @@ body {
     position: relative;
 }
 
-.buttons {
+/*.buttons {
     display: flex;
-    flex-direction: column;
+    margin: auto;
+    margin-top: 1rem;
+    width: fit-content;
+}*/
+
+.inputs {
+    display: flex;
+    flex-direction: row;
     margin: auto;
     margin-top: 1rem;
     width: fit-content;
 }
 
-.buttons > input {
-    margin-right: 3px;
-}
-
-.buttons > .inputs {
+.inputs {
+    display: flex;
     flex-direction: row;
-}
-
-.buttons > .row-buttons {
     margin: auto;
-    margin-top: 5px;
+    margin-top: 0.5rem;
+    width: fit-content;
+}
+
+.inputs > * {
+    margin-left: 5px;
+}
+
+.control-buttons {
+    display: flex;
     flex-direction: row;
+    margin: auto;
+    margin-top: 0.5rem;
+    width: fit-content;
+}
+
+.special-buttons {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    margin-top: 0.5rem;
+    width: fit-content;
+}
+
+@media (max-width: 60em){
+    .inputs {
+        flex-direction: column;
+    }
+    .inputs > * {
+        margin-top: 5px;
+    }
+    .control-buttons{
+        flex-direction: column;
+    }
+    .control-buttons > * {
+        margin-bottom: 5px;
+    }
 }
 
 button {
     background-color: gray;
     border: 1px black solid;
-    border-radius: 25px;
-    font-size: 1.325rem;
+    border-radius: 5px;
+    font-size: 1.5rem;
     transition: 0.5s;
+    margin-left: 5px;
 }
 
 button:hover {

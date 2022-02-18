@@ -3,6 +3,8 @@ let buttons = document.getElementById("buttons");
 
 let currentRoom;
 
+let html;
+
 let expectedPW = [];
 
 const bedroom = {
@@ -22,7 +24,10 @@ $('#start').click(() => {
 })
 
 function addComputer() {
-    buttons.innerHTML = buttons.innerHTML + `<button id="computer">Computer</button>`
+    html = html + `<button id="computer">Computer</button></div>`;
+
+    
+    buttons.innerHTML = html;
 
     $('#computer').click(() => {
         computer();
@@ -30,22 +35,22 @@ function addComputer() {
 }
 
 function loadBedroom() {
-    console.log("Entering bedroom");
-    buttons.innerHTML = "";
+
     currentRoom = bedroom;
+
+    html = `<div class="control-buttons">`
 
     gameFrame.src = currentRoom.mainImage;
 
     for (let i = 0; i < currentRoom.buttons.length; i++) {
-        buttons.innerHTML = buttons.innerHTML + `<button id="${currentRoom.buttons[i]}">${currentRoom.buttonsText[i]}</button>`
+        html = html + `<button id="${currentRoom.buttons[i]}">${currentRoom.buttonsText[i]}</button>`
     }
 
     addComputer();
 
     for (let i = 0; i < currentRoom.buttons.length; i++) {
         $(`#${currentRoom.buttons[i]}`).click(() => {
-            console.log(currentRoom.buttonsReturn[i]);
-            //expectedPW.push(currentRoom.passwords[i]);
+            expectedPW.push(currentRoom.passwords[i]);
         })
     }
 
@@ -57,9 +62,18 @@ function loadBathroom() {
 
 function computer() {
     console.log(expectedPW);
-    buttons.innerHTML = `
-    <div class="inputs"><input id="pw1" type="text"><input id="pw2" type="text"><input id="pw3" type="text"></div>
-    <div class="row-buttons"><button id="goBack">Go Back</button> <button id="submit">Submit</button></div>`;
+
+    html = `<div class="inputs">
+    <input id="pw1" type="text">
+    <input id="pw2" type="text">
+    <input id="pw3" type="text">
+    </div>
+    <div class="special-buttons">
+    <button id="submit">Submit</button>
+    <button id="goBack">Go Back</button>
+    </div>`;
+
+    buttons.innerHTML = html;
 
     $('#goBack').click(() => {
         currentRoom.load();
