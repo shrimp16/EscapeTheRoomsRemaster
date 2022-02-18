@@ -3,13 +3,13 @@
 }
 
 body {
-    background-color: lightgray;
+    background-color: black;
 }
 
 .game-frame {
-    height: 65vh;
+    height: 75vh;
     width: 65vw;
-    border: 2px black solid;
+    border: 2px white solid;
     margin: auto;
     margin-top: 2rem;
 }
@@ -23,20 +23,19 @@ body {
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: fit-content;
 }
 
 button {
-    margin-top: 4px;
     background-color: gray;
     border: 1px black solid;
     border-radius: 25px;
-    font-size: 1rem;
+    font-size: 1.325rem;
     transition: 0.5s;
 }
 
 button:hover {
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 1);
 }
