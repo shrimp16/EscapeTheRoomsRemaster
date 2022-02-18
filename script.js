@@ -3,12 +3,17 @@ let buttons = document.getElementById("buttons");
 
 let currentRoom;
 
+let expectedPW = [];
+
 const bedroom = {
+    load: loadBedroom,
     nextRoom: loadBathroom,
     buttons: ["bed", "notebooks", "closet"],
     buttonsText: ["Check under the bed", "Check the old notebooks", "Check the closet"],
-    buttonsReturn: ["You found nothing", "101000111001110101100010001001110010001000111101", "WHY IS SOMEONE DEAD HERE"], //testing propose
+    buttonsReturn: ["You found nothing", "101000111001110101100010001001110010001000111101", "All the clothes here seem to have something in common"], //testing propose
     images: [], // need to get the images
+    passwords: ["null", "equals", "interface"],
+    checked: [false, false, false],
     mainImage: "./images/MainPage.png" // need to get image
 }
 
@@ -40,6 +45,7 @@ function loadBedroom() {
     for (let i = 0; i < currentRoom.buttons.length; i++) {
         $(`#${currentRoom.buttons[i]}`).click(() => {
             console.log(currentRoom.buttonsReturn[i]);
+            //expectedPW.push(currentRoom.passwords[i]);
         })
     }
 
@@ -50,5 +56,18 @@ function loadBathroom() {
 }
 
 function computer() {
-    console.log("put the password");
+    console.log(expectedPW);
+    buttons.innerHTML = `
+    <div class="inputs"><input id="pw1" type="text"><input id="pw2" type="text"><input id="pw3" type="text"></div>
+    <div class="row-buttons"><button id="goBack">Go Back</button> <button id="submit">Submit</button></div>`;
+
+    $('#goBack').click(() => {
+        currentRoom.load();
+    })
+
+    $('#submit').click(() => {
+        console.log(document.querySelector("#pw1").value);
+        console.log(document.querySelector("#pw2").value);
+        console.log(document.querySelector("#pw3").value);
+    })
 }

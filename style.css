@@ -17,6 +17,7 @@ body {
 .game-frame > img {
     height: 100%;
     width: 100%;
+    position: relative;
 }
 
 .buttons {
@@ -25,6 +26,20 @@ body {
     margin: auto;
     margin-top: 1rem;
     width: fit-content;
+}
+
+.buttons > input {
+    margin-right: 3px;
+}
+
+.buttons > .inputs {
+    flex-direction: row;
+}
+
+.buttons > .row-buttons {
+    margin: auto;
+    margin-top: 5px;
+    flex-direction: row;
 }
 
 button {
