@@ -14,3 +14,8 @@ I'm recreating the game but now utilizing different technologies.
   - HTML
   - CSS
   - JavaScript
+
+# Screenshots
+ 
+ ![Main Page](screenshots/Screenshot_1.png)
+ ---
