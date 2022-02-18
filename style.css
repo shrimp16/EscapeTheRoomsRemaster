@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+}
+
+body {
+    background-color: lightgray;
+}
+
+.game-frame {
+    height: 65vh;
+    width: 65vw;
+    border: 2px black solid;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.game-frame > img {
+    height: 100%;
+    width: 100%;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 2rem;
+    width: fit-content;
+}
+
+button {
+    margin-top: 4px;
+    background-color: gray;
+    border: 1px black solid;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: 0.5s;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.4);
+}
