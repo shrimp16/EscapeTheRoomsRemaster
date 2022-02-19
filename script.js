@@ -1,5 +1,6 @@
-let gameFrame = document.getElementById("game-frame-image");
+let gameFrame = document.getElementById("img");
 let buttons = document.getElementById("buttons");
+let overlay = document.getElementById("overlay");
 
 let currentRoom;
 
@@ -15,7 +16,7 @@ const bathroom = {
     images: [], // need to get the images
     passwords: ["null", "equals", "interface"],
     checked: [false, false, false],
-    mainImage: "./images/MainPage.png" // need to get image
+    mainImage: "/images/MainPage.png" // need to get image
 }
 
 const bedroom = {
@@ -26,7 +27,7 @@ const bedroom = {
     images: [], // need to get the images
     passwords: ["null", "equals", "interface"],
     checked: [false, false, false],
-    mainImage: "./images/MainPage.png" // need to get image
+    mainImage: "/images/MainPage.png" // need to get image
 }
 
 $('#start').click(() => {
@@ -37,7 +38,9 @@ $('#start').click(() => {
 function loadRoom() {
 
     html = `<div class="control-buttons">`
+    overlay.style.display = "none";
 
+    console.log(gameFrame);
     gameFrame.src = currentRoom.mainImage;
 
     for (let i = 0; i < currentRoom.buttons.length; i++) {
@@ -48,16 +51,29 @@ function loadRoom() {
 
     for (let i = 0; i < currentRoom.buttons.length; i++) {
         $(`#${currentRoom.buttons[i]}`).click(() => {
-            if(!currentRoom.checked[i]){
-                alert(currentRoom.buttonsReturn[i]);
+
+                overlay.style.display = "flex";
+                overlay.innerHTML = `<h1>${currentRoom.buttons[i]}</h1>
+                <p class="desc">
+                    ${currentRoom.buttonsReturn[i]}
+                </p>`;
+
                 expectedPW.push(currentRoom.passwords[i]);
                 currentRoom.checked[i] = true;
-            }else{
-                alert("checked");
-            }
+
+                createBackButton();
+
         })
     }
 
+}
+
+function createBackButton() {
+    buttons.innerHTML = `<div class="special-buttons"><button id="goBack">Go Back</button></div>`;
+
+    $('#goBack').click(() => {
+        loadRoom();
+    })
 }
 
 function addComputer() {
@@ -94,15 +110,15 @@ function computer() {
         let pw2 = document.querySelector("#pw2").value;
         let pw3 = document.querySelector("#pw3").value;
 
-        if(pw1 === expectedPW[0] && pw2 === expectedPW[1] && pw3 === expectedPW[2]){
+        if (pw1 === expectedPW[0] && pw2 === expectedPW[1] && pw3 === expectedPW[2]) {
             alert("Good job, you made it to the next room");
             currentRoom = currentRoom.nextRoom;
-        }else{
+        } else {
             alert("WRONG");
         }
 
         expectedPW = [];
         loadRoom();
-        
+
     })
 }
