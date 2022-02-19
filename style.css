@@ -47,6 +47,10 @@ body {
     margin-left: 5px;
 }
 
+input {
+    font-size: 1.8rem;
+}
+
 .control-buttons {
     display: flex;
     flex-direction: row;
@@ -63,7 +67,7 @@ body {
     width: fit-content;
 }
 
-@media (max-width: 60em){
+@media (max-width: 65em){
     .inputs {
         flex-direction: column;
     }
@@ -82,7 +86,7 @@ button {
     background-color: gray;
     border: 1px black solid;
     border-radius: 5px;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     transition: 0.5s;
     margin-left: 5px;
 }
