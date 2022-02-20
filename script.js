@@ -1,6 +1,8 @@
 let gameFrame = document.getElementById("img");
 let buttons = document.getElementById("buttons");
 let overlay = document.getElementById("overlay");
+let roomTitle = document.getElementById("room-title");
+let roomDescription = document.getElementById("description");
 
 let currentRoom;
 
@@ -52,28 +54,57 @@ function loadRoom() {
     for (let i = 0; i < currentRoom.buttons.length; i++) {
         $(`#${currentRoom.buttons[i]}`).click(() => {
 
-                overlay.style.display = "flex";
-                overlay.innerHTML = `<h1>${currentRoom.buttons[i]}</h1>
+
+            roomTitle.innerHTML = `${currentRoom.buttons[i]}`;
+
+            createBanner(currentRoom.buttonsReturn[i]);
+            overlay.style.display = "flex";
+            /*overlay.innerHTML = `<h1>${currentRoom.buttons[i]}</h1>
                 <p class="desc">
                     ${currentRoom.buttonsReturn[i]}
-                </p>`;
+                </p>`;*/
 
-                expectedPW.push(currentRoom.passwords[i]);
-                currentRoom.checked[i] = true;
+            expectedPW.push(currentRoom.passwords[i]);
+            currentRoom.checked[i] = true;
 
-                createBackButton();
+            buttons.innerHTML = `<div class="special-buttons"><button id="goBack">Go Back</button></div>`;
+
+            $('#goBack').click(() => {
+                loadRoom();
+            })
 
         })
     }
 
 }
 
-function createBackButton() {
-    buttons.innerHTML = `<div class="special-buttons"><button id="goBack">Go Back</button></div>`;
+function createBanner(description) {
+    
+    let words = description.split("");
+    let char = 0;
+    roomDescription.innerHTML = "";
+    console.log(words);
+    for (let i = 0; i < description.length; i++) {
+        roomDescription.innerHTML += `<span>${description[i]}</span>`;
+    }
 
-    $('#goBack').click(() => {
-        loadRoom();
-    })
+    let timer = setInterval(onTick, 100);
+
+    function onTick(){
+        const span = roomDescription.querySelectorAll('span')[char];
+        console.log(span);
+        span.classList.add('fade');
+        char++;
+    
+        if(char === words.length){
+            clearInterval(timer);
+        }
+    }
+}
+
+function complete() {
+    clearInterval(timer);
+    timer = null;
 }
 
 function addComputer() {
