@@ -14,7 +14,7 @@ const bathroom = {
     nextRoom: null,
     buttons: ["toilet", "mirror", "shower"],
     buttonsText: ["Check the toilet", "Look on the mirror", "Check under the shower"],
-    buttonsReturn: ["You found nothing", "101000111001110101100010001001110010001000111101", "All the clothes here seem to have something in common"], //testing propose
+    buttonsReturn: ["You found nothing", "01000001 01110010 01100101 00100000 01111001 01101111 01110101 00100000 01100001 00100000 01100011 01100001 01110100 00111111", "All the clothes here seem to have something in common"], //testing propose
     images: [], // need to get the images
     passwords: ["null", "equals", "interface"],
     checked: [false, false, false],
@@ -25,7 +25,10 @@ const bedroom = {
     nextRoom: bathroom,
     buttons: ["bed", "notebooks", "closet"],
     buttonsText: ["Check under the bed", "Check the old notebooks", "Check the closet"],
-    buttonsReturn: ["You found nothing", "101000111001110101100010001001110010001000111101", "All the clothes here seem to have something in common"], //testing propose
+    buttonsReturn: ["You found nothing", 
+    "01010011 01101111 01101101 01100101 01101111 01101110 01100101 00100000 01101011 01101001 01101100 01101100 01100101 01100100 00100000 01110100 01101000 01100101 00100000 01100011 01100001 01110100",
+    "Why do I only have jackets?"], //testing propose
+    secondText: ["There's nothing there", "Is it going to catch you too?", "This is full of jackets"],
     images: [], // need to get the images
     passwords: ["null", "equals", "interface"],
     checked: [false, false, false],
@@ -59,10 +62,6 @@ function loadRoom() {
 
             createBanner(currentRoom.buttonsReturn[i]);
             overlay.style.display = "flex";
-            /*overlay.innerHTML = `<h1>${currentRoom.buttons[i]}</h1>
-                <p class="desc">
-                    ${currentRoom.buttonsReturn[i]}
-                </p>`;*/
 
             expectedPW.push(currentRoom.passwords[i]);
             currentRoom.checked[i] = true;
@@ -79,7 +78,7 @@ function loadRoom() {
 }
 
 function createBanner(description) {
-    
+
     let words = description.split("");
     let char = 0;
     roomDescription.innerHTML = "";
@@ -88,15 +87,15 @@ function createBanner(description) {
         roomDescription.innerHTML += `<span>${description[i]}</span>`;
     }
 
-    let timer = setInterval(onTick, 100);
+    let timer = setInterval(onTick, 75);
 
-    function onTick(){
+    function onTick() {
         const span = roomDescription.querySelectorAll('span')[char];
         console.log(span);
         span.classList.add('fade');
         char++;
-    
-        if(char === words.length){
+
+        if (char === words.length) {
             clearInterval(timer);
         }
     }
