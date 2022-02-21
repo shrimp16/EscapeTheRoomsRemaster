@@ -25,10 +25,10 @@ const bedroom = {
     nextRoom: bathroom,
     buttons: ["Bed", "Notebooks", "Closet"],
     buttonsText: ["Check under the bed", "Check the old notebooks", "Check the closet"],
-    firstText: ["I don't think there's anything there", "39321, 5031, 1203, 721435, 94769, 3009, 3, 365, 103, 323643, 787", "This is full of clothes"],
-    secondText: ["There's nothing there", "12393, 1305, 3021, 534127, 96749, 9003, 3, 563, 301, 346323, 787", "Oh! My super hero costume"],
+    firstText: ["I don't think there's anything here", "39321, 5031, 1203, 721435, 94769, 3009, 3, 365, 103, 323643, 787", "This is full of clothes"],
+    secondText: ["There's nothing here", "12393, 1305, 3021, 534127, 96749, 9003, 3, 563, 301, 346323, 787", "Oh! My super hero costume"],
     images: [], // need to get the images
-    passwords: ["null", "odd", "interface"],
+    passwords: ["null", "odd", "cosplay"],
     checked: [false, false, false],
     mainImage: "/images/MainPage.png" // need to get image
 }
@@ -55,14 +55,17 @@ function loadRoom() {
     for (let i = 0; i < currentRoom.buttons.length; i++) {
         $(`#${currentRoom.buttons[i]}`).click(() => {
 
-
-            roomTitle.innerHTML = `${currentRoom.buttons[i]}`;
-
-            createBanner(currentRoom.firstText[i]);
             overlay.style.display = "flex";
 
-            expectedPW.push(currentRoom.passwords[i]);
-            currentRoom.checked[i] = true;
+            roomTitle.innerHTML = currentRoom.buttons[i];
+
+            if(!currentRoom.checked[i]){
+                expectedPW.push(currentRoom.passwords[i]);
+                createBanner(currentRoom.firstText[i]);
+                currentRoom.checked[i] = true;
+            }else{
+                createBanner(currentRoom.secondText[i]);
+            }
 
             buttons.innerHTML = `<div class="special-buttons"><button id="goBack">Go Back</button></div>`;
 
@@ -81,7 +84,7 @@ function createBanner(description) {
     let timer = setInterval(onTick, 75);
     let words = description.split("");
     roomDescription.innerHTML = "";
-    
+
     for (let i = 0; i < description.length; i++) {
         roomDescription.innerHTML += `<span>${description[i]}</span>`;
     }
