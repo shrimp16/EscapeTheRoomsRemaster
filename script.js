@@ -38,6 +38,7 @@ const bedroom = {
 
 $('#start').click(() => {
     overlay.style.display = "flex";
+    document.getElementById("start").style.display = "none";
     roomTitle.innerHTML = startTitle;
     createBanner(start);
     currentRoom = bedroom;
@@ -145,15 +146,21 @@ function computer() {
         let pw2 = document.querySelector("#pw2").value;
         let pw3 = document.querySelector("#pw3").value;
 
+        document.querySelector("#pw1").value = "";
+        document.querySelector("#pw2").value = "";
+        document.querySelector("#pw3").value = "";
+
+        overlay.style.display = "flex";
+
         if (pw1 === expectedPW[0] && pw2 === expectedPW[1] && pw3 === expectedPW[2]) {
-            alert("Good job, you made it to the next room");
+            createBanner("Congratulations, you made it to the next room!")
             currentRoom = currentRoom.nextRoom;
         } else {
-            alert("WRONG");
+            createBanner("WRONG!!!");
         }
 
-        expectedPW = [];
-        loadRoom();
+        setTimeout(loadRoom, 5000);
 
+        expectedPW = [];
     })
 }
