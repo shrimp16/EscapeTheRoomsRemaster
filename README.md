@@ -16,6 +16,15 @@ I'm recreating the game but now utilizing different technologies.
   - JavaScript
 
 # Screenshots
+
+  Since there are no images yet, the main page image appears everywhere at the moment.
  
  ![Main Page](screenshots/Screenshot_1.png)
  ---
+ ![Room example](screenshots/Screenshot_2.png)
+ ---
+ ![Card example](screenshots/Screenshot_3.png)
+ ---
+ ![Computer](screenshots/Screenshot_4.png)
+ 
+ 
