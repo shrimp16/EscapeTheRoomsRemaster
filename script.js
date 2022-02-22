@@ -8,6 +8,9 @@ let currentRoom;
 
 let html;
 
+const startTitle = "Welcome to the game";
+const start = "You've been locked inside a virtual reality game, now you have to find a way to get out!               Good luck!";
+
 let expectedPW = [];
 
 const bathroom = {
@@ -34,8 +37,11 @@ const bedroom = {
 }
 
 $('#start').click(() => {
+    overlay.style.display = "flex";
+    roomTitle.innerHTML = startTitle;
+    createBanner(start);
     currentRoom = bedroom;
-    loadRoom();
+    setTimeout(loadRoom, 10000);
 })
 
 function loadRoom() {
@@ -43,7 +49,6 @@ function loadRoom() {
     html = `<div class="control-buttons">`
     overlay.style.display = "none";
 
-    console.log(gameFrame);
     gameFrame.src = currentRoom.mainImage;
 
     for (let i = 0; i < currentRoom.buttons.length; i++) {
